@@ -1,26 +1,21 @@
 import { useEffect, useState } from "react";
-import FetchGameResponse from "../entities/fetchGameResponse";
-import Game from "../entities/games";
 import apiClient, { CanceledError } from "../services/api-client";
 
+import FetchResponse from '../entities/fetchResponse';
 
-const useGames = () => {
-  const [games, setGames] = useState<Game[]>([]);
+const useData = <T>(endpoint: string) => {
+const [data, setData] = useState<T[]>([]);
   const [error, setError] = useState("");
   const [isLoading, setLoading] = useState(false);
 
-  
-
-
-
   useEffect(() => {
     const controller = new AbortController();
-    
+
     setLoading(true)
     apiClient
-      .get<FetchGameResponse>("/games", {signal: controller.signal})
+      .get<FetchResponse<T>>(endpoint, {signal: controller.signal})
       .then((resp) => {
-        setGames(resp.data.results);
+        setData(resp.data.results);
         setLoading(false)
       })
       .catch((err: Error) => {
@@ -29,9 +24,10 @@ const useGames = () => {
         setLoading(false)});
 
       return () => controller.abort()
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   },[]);
 
-  return {games, error, isLoading}
+  return {data, error, isLoading}
 }
 
-export default useGames
+export default useData;
