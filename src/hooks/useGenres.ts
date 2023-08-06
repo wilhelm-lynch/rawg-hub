@@ -1,24 +1,21 @@
 import { useEffect, useState } from "react";
-import FetchGameResponse from "../entities/fetchGameResponse";
-import Game from "../entities/games";
 import apiClient, { CanceledError } from "../services/api-client";
+import Genre from '../entities/genres';
+import FetchGenresResponse from '../entities/fetchGenresResponse';
 
-
-const useGames = () => {
-  const [games, setGames] = useState<Game[]>([]);
+const useGenres = () => {
+  const [genres, setGenres] = useState<Genre[]>([]);
   const [error, setError] = useState("");
   const [isLoading, setLoading] = useState(false);
 
   const controller = new AbortController();
 
-
-
   useEffect(() => {
     setLoading(true)
     apiClient
-      .get<FetchGameResponse>("/games", {signal: controller.signal})
+      .get<FetchGenresResponse>("/genres", {signal: controller.signal})
       .then((resp) => {
-        setGames(resp.data.results);
+        setGenres(resp.data.results);
         setLoading(false)
       })
       .catch((err: Error) => {
@@ -27,9 +24,9 @@ const useGames = () => {
         setLoading(false)});
 
       return () => controller.abort()
-  }, []);
+  },[]);
 
-  return {games, error, isLoading}
+  return {genres, error, isLoading}
 }
 
-export default useGames
+export default useGenres
