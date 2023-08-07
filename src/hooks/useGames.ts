@@ -1,37 +1,8 @@
-import { useEffect, useState } from "react";
-import FetchGameResponse from "../entities/fetchGameResponse";
 import Game from "../entities/games";
-import apiClient, { CanceledError } from "../services/api-client";
+import Genre from "../entities/genres";
+import useData from './useData';
 
 
-const useGames = () => {
-  const [games, setGames] = useState<Game[]>([]);
-  const [error, setError] = useState("");
-  const [isLoading, setLoading] = useState(false);
-
-  
-
-
-
-  useEffect(() => {
-    const controller = new AbortController();
-    
-    setLoading(true)
-    apiClient
-      .get<FetchGameResponse>("/games", {signal: controller.signal})
-      .then((resp) => {
-        setGames(resp.data.results);
-        setLoading(false)
-      })
-      .catch((err: Error) => {
-        if(err instanceof CanceledError) return;
-        setError(err.message);
-        setLoading(false)});
-
-      return () => controller.abort()
-  },[]);
-
-  return {games, error, isLoading}
-}
+const useGames = (selectedGenre: Genre | null) => useData<Game>("/games", {params: {genres: selectedGenre?.id}}, [selectedGenre?.id])
 
 export default useGames
