@@ -1,5 +1,4 @@
 import { Menu, MenuButton, MenuList, MenuItem, Button } from "@chakra-ui/react";
-import { orderBy } from "lodash";
 import { BsChevronDown } from "react-icons/bs";
 
 interface Props {
