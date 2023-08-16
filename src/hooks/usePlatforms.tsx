@@ -1,8 +1,7 @@
 import platforms from "../data/platforms";
-import Platform from "../entities/platform";
+import { FetchResponse, Platform } from "../entities";
 import { useQuery } from "@tanstack/react-query";
 import apiClient from "../services/api-client";
-import FetchResponse from "../entities/fetchResponse";
 
 const usePlatforms = () =>
   useQuery({

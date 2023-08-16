@@ -1,8 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 //  import games from "../data/games";
-import FetchResponse from "../entities/fetchResponse";
-import GameQuery from "../entities/gamequery";
-import Game from "../entities/games";
+import { FetchResponse, Game, GameQuery } from "../entities";
 import apiClient from "../services/api-client";
 
 const useGames = (gameQuery: GameQuery) =>
