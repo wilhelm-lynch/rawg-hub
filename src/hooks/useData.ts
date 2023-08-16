@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import apiClient, { CanceledError } from "../services/api-client";
+import APIClient, { CanceledError } from "../services/api-client";
 
-import { FetchResponse } from "../entities";
+import { FetchResponse } from "../services/api-client";
 import { AxiosRequestConfig } from "axios";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -10,6 +10,7 @@ const useData = <T>(
   requestConfig?: AxiosRequestConfig,
   deps?: any[]
 ) => {
+  const apiClient = new APIClient<T>(endpoint);
   const [data, setData] = useState<T[]>([]);
   const [error, setError] = useState("");
   const [isLoading, setLoading] = useState(false);
@@ -20,7 +21,7 @@ const useData = <T>(
 
       setLoading(true);
       apiClient
-        .get<FetchResponse<T>>(endpoint, {
+        .getAll<T>(endpoint, {
           signal: controller.signal,
           ...requestConfig,
         })
