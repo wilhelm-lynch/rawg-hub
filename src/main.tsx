@@ -15,7 +15,11 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <ColorModeScript initialColorMode={theme.config.initialColorMode} />
       <QueryClientProvider client={queryClient}>
         <App />
-        <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
+        <ReactQueryDevtools
+          initialIsOpen={false}
+          position="bottom-right"
+          closeButtonProps={{ style: { display: "none" } }}
+        />
       </QueryClientProvider>
     </ChakraProvider>
   </React.StrictMode>
