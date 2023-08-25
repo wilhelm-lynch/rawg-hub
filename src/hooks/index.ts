@@ -1,7 +1,6 @@
-import usePlatform from "./usePlatform";
-import usePlatforms from "./usePlatforms";
-import useGenre from "./useGenre";
-import useGenres from "./useGenres";
-import useGame from "./useGame";
-
-export { useGame, useGenre, useGenres, usePlatform, usePlatforms };
+export { default as useGame } from "./useGame";
+export { default as useGenre } from "./useGenre";
+export { default as useGenres } from "./useGenres";
+export { default as usePlatform } from "./usePlatform";
+export { default as usePlatforms } from "./usePlatforms";
+export { default as useTrailers } from "./useTrailers";
