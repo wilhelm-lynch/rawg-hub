@@ -4,3 +4,6 @@ export { default as GenreList } from "./GenreList";
 export { default as SortSelector } from "./SortSelector";
 export { default as GameGrid } from "./GameGrid";
 export { default as ExpandableText } from "./ExpandableText";
+export { default as DefinitionItem } from "./DefinitionItem";
+export { default as CriticScore } from "./CriticScore";
+export { default as GameAttributes } from "./GameAttributes";
