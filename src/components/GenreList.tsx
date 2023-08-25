@@ -6,10 +6,10 @@ import {
   List,
   ListItem,
 } from "@chakra-ui/react";
-import useGenres from "../hooks/useGenres";
+import { useGenres } from "../hooks";
 import getCroppedImageUrl from "../services/image-url";
 import useGameQueryStore from "../store";
-import GenreListSkeleton from "./GenreListSkeleton";
+import { GenreListSkeleton } from ".";
 
 const GenreList = () => {
   const { data: genres, isLoading } = useGenres();
