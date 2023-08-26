@@ -4,3 +4,4 @@ export type { default as Game } from "./game";
 export type { default as Genre } from "./genres";
 export type { default as Platform } from "./platform";
 export type { default as Trailer } from "./trailer";
+export type { default as ScreenShot } from "./screenshot";
